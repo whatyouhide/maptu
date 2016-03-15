@@ -1,5 +1,7 @@
 # Maptu
 
+[![Build Status](https://travis-ci.org/whatyouhide/maptu.svg?branch=master)](https://travis-ci.org/whatyouhide/maptu)
+
 Maptu is a small Elixir library that provides functions to convert from
 "encoded" maps to Elixir structs.
 
