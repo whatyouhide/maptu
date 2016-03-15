@@ -39,7 +39,7 @@ and be sure to add `:maptu` to your list of started applications:
 
 ```elixir
 def application do
-  [applications: [..., :maptu]]
+  [applications: [:maptu]]
 end
 ```
 
