@@ -23,7 +23,8 @@ atoms):
 
 ## Credit
 
-Most of the ideas in this library come from the awesome @lexmag :heart:
+Most of the design and implementation ideas in this library come from the
+awesome [@lexmag](https://github.com/lexmag) :heart:
 
 ## Installation
 
