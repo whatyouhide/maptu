@@ -35,8 +35,7 @@ defmodule Maptu.Mixfile do
   end
 
   defp deps do
-    [{:dialyze, ">= 0.0.0", only: :dev},
-     {:earmark, ">= 0.0.0", only: :docs},
+    [{:earmark, ">= 0.0.0", only: :docs},
      {:ex_doc, ">= 0.0.0", only: :docs}]
   end
 end
