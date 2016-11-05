@@ -34,7 +34,7 @@ Add `:maptu` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:maptu, ">= 0.0.0"}]
+  [{:maptu, "~> 1.0"}]
 end
 ```
 
