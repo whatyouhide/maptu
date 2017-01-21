@@ -5,9 +5,7 @@ defmodule Maptu.Mixfile do
 
   @repo_url "https://github.com/whatyouhide/maptu"
 
-  @description """
-  Tiny library to convert from "encoded" maps to Elixir structs.
-  """
+  @description ~s(Tiny library to convert from "encoded" maps to Elixir structs.)
 
   def project do
     [app: :maptu,
