@@ -104,7 +104,7 @@ defmodule Maptu do
       {:error, {:non_struct, GenServer}}
 
   """
-  @spec struct(%{}) :: {:ok, %{}} | {:error, non_strict_error_reason}
+  @spec struct(map) :: {:ok, map} | {:error, non_strict_error_reason}
   def struct(map) do
     with {:ok, {mod_name, fields}} <- extract_mod_name_and_fields(map),
          {:ok, mod}                <- module_to_atom(mod_name),
@@ -129,7 +129,7 @@ defmodule Maptu do
       {:error, {:unknown_struct_field, URI, :pid}}
 
   """
-  @spec strict_struct(%{}) :: {:ok, %{}} | {:error, strict_error_reason}
+  @spec strict_struct(map) :: {:ok, map} | {:error, strict_error_reason}
   def strict_struct(map) do
     with {:ok, {mod_name, fields}} <- extract_mod_name_and_fields(map),
          {:ok, mod}                <- module_to_atom(mod_name),
@@ -152,7 +152,7 @@ defmodule Maptu do
       ** (ArgumentError) module is not a struct: GenServer
 
   """
-  @spec struct!(%{}) :: %{} | no_return
+  @spec struct!(map) :: map | no_return
   def struct!(map) do
     map |> struct() |> raise_on_error()
   end
@@ -173,7 +173,7 @@ defmodule Maptu do
       ** (ArgumentError) unknown field :pid for struct URI
 
   """
-  @spec strict_struct!(%{}) :: %{} | no_return
+  @spec strict_struct!(map) :: map | no_return
   def strict_struct!(map) do
     map |> strict_struct() |> raise_on_error()
   end
@@ -200,7 +200,7 @@ defmodule Maptu do
       {:error, {:non_struct, GenServer}}
 
   """
-  @spec struct(module, %{}) :: {:ok, %{}} | {:error, non_strict_error_reason}
+  @spec struct(module, map) :: {:ok, map} | {:error, non_strict_error_reason}
   def struct(mod, fields) when is_atom(mod) and is_map(fields) do
     with :ok <- ensure_struct(mod), do: fill_struct(mod, fields)
   end
@@ -222,7 +222,7 @@ defmodule Maptu do
       {:error, {:unknown_struct_field, URI, :pid}}
 
   """
-  @spec strict_struct(module, %{}) :: {:ok, %{}} | {:error, strict_error_reason}
+  @spec strict_struct(module, map) :: {:ok, map} | {:error, strict_error_reason}
   def strict_struct(mod, fields) when is_atom(mod) and is_map(fields) do
     with :ok <- ensure_struct(mod), do: strict_fill_struct(mod, fields)
   end
@@ -243,7 +243,7 @@ defmodule Maptu do
       ** (ArgumentError) module is not a struct: GenServer
 
   """
-  @spec struct!(module, %{}) :: %{} | no_return
+  @spec struct!(module, map) :: map | no_return
   def struct!(mod, fields) do
     struct(mod, fields) |> raise_on_error()
   end
@@ -264,7 +264,7 @@ defmodule Maptu do
       ** (ArgumentError) unknown field :pid for struct URI
 
   """
-  @spec strict_struct!(module, %{}) :: %{} | no_return
+  @spec strict_struct!(module, map) :: map | no_return
   def strict_struct!(mod, fields) do
     strict_struct(mod, fields) |> raise_on_error()
   end
