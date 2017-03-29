@@ -1,6 +1,6 @@
 # Maptu
 
-[![Build Status](https://travis-ci.org/whatyouhide/maptu.svg?branch=master)](https://travis-ci.org/whatyouhide/maptu)
+[![Build Status](https://travis-ci.org/lexhide/maptu.svg?branch=master)](https://travis-ci.org/lexhide/maptu)
 [![Hex.pm](https://img.shields.io/hexpm/v/maptu.svg)](https://hex.pm/packages/maptu)
 
 Maptu is a small Elixir library that provides functions to convert from
