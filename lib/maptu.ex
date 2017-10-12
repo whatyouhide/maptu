@@ -12,7 +12,7 @@ defmodule Maptu do
   structs. Encoding is often straightforward (think of libraries like
   [poison][gh-poison] or [msgpax][gh-msgpax]): the map is encoded by converting
   keys to strings and encoding values recursively. This works natively with
-  structs as well, since structs are just maps with anadditional `:__struct__`
+  structs as well, since structs are just maps with an additional `:__struct__`
   key.
 
   The problem arises when such structs have to be decoded back to Elixir terms:
