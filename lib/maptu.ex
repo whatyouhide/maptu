@@ -60,6 +60,8 @@ defmodule Maptu do
 
   import Kernel, except: [struct: 1, struct: 2]
 
+  # TODO: maybe revisit naming of :non_* error reasons in v2.0 so that we drop the underscore.
+
   @type non_strict_error_reason ::
     :missing_struct_key
     | {:bad_module_name, binary}
