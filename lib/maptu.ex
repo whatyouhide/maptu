@@ -286,7 +286,7 @@ defmodule Maptu do
   end
 
   defp ensure_struct(mod) when is_atom(mod) do
-    case mod.module_info(:functions)[:struct] do
+    case mod.module_info(:functions)[:__struct__] do
       0 -> :ok
       nil -> {:error, {:non_struct, mod}}
     end
