@@ -286,10 +286,9 @@ defmodule Maptu do
   end
 
   defp ensure_struct(mod) when is_atom(mod) do
-    if function_exported?(mod, :__struct__, 0) do
-      :ok
-    else
-      {:error, {:non_struct, mod}}
+    case mod.module_info(:functions)[:__struct__] do
+      0 -> :ok
+      _ -> {:error, {:non_struct, mod}}
     end
   end
 
