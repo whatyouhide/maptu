@@ -3,6 +3,22 @@ defmodule MaptuTest do
 
   doctest Maptu
 
+  defmodule Dummy do
+    import Maptu
+
+    @enforce_keys [:foo, :bar]
+    @keys @enforce_keys ++ [:qwe]
+
+    defstruct @keys
+
+    defmaptu(:new, @keys)
+  end
+
+  test "defmaptu/2" do
+    assert Dummy.new(%{"foo" => 1}) == :error
+    assert Dummy.new(%{"foo" => 1, "bar" => 1, "qwe" => 1}) == :ok
+  end
+
   test "struct/1 and strict_struct/1: no __struct__ key in the given map" do
     assert Maptu.struct(%{"foo" => "bar"}) == {:error, :missing_struct_key}
     assert Maptu.strict_struct(%{"foo" => "bar"}) == {:error, :missing_struct_key}

@@ -83,6 +83,39 @@ defmodule Maptu do
     end
   end
 
+  defmacro defmaptu(function_name, keys) do
+    quote bind_quoted: [function_name: function_name, keys: keys] do
+      enforced_keys = Module.get_attribute(__MODULE__, :enforce_keys, [])
+
+      vars =
+        enforced_keys
+        |> length
+        |> Macro.generate_arguments(__MODULE__)
+
+      string_fields =
+        keys
+        |> Enum.map(&Atom.to_string/1)
+        |> Enum.zip(vars)
+
+      atom_fields = Enum.zip(keys, vars)
+
+      optional_keys = keys -- enforced_keys
+
+      def unquote(function_name)(%{unquote_splicing(string_fields)} = map) do
+        struct =
+          Enum.reduce(unquote(optional_keys), %__MODULE__{unquote_splicing(atom_fields)}, fn key, acc ->
+            %{acc | key => Map.get(map, Atom.to_string(key))}
+          end)
+
+        {:ok, struct}
+      end
+
+      def unquote(function_name)(_other) do
+        {:error, :missing_keys}
+      end
+    end
+  end
+
   @doc """
   Converts a map to a struct, silently ignoring erroneous keys.
 
